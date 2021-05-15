@@ -23,16 +23,9 @@ var db = mysql.createConnection({
 db.connect();
 
 //Mysql
-app.get('/:id', (req,res)=>{
-    console.log("연결!");
-    res.send("okay");
-    // const mac = req.query.mac;
-    // if(mac.length != 17){
-    //     res.send(null);        
-    // }else{
-    //     const time = date.toFormat('YYYY-MM-DD HH24:MI:SS');
-        
-    // }    
+app.get('/:id/', (req,res)=>{
+    console.log("latitude = "+ req.params.latitude + " longitude = " + req.params.longitude);
+    res.send("okay");    
 });
 
 //rounting
