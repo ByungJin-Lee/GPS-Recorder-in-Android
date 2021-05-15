@@ -5,7 +5,7 @@ var express = require('express');
 var date = new Date();
 const app = express();
 const bodyParser = require('body-parser');
-const port = 3000;
+const port = 80;
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -23,14 +23,16 @@ var db = mysql.createConnection({
 db.connect();
 
 //Mysql
-app.get('/gps_r', (req,res)=>{
-    const mac = req.query.mac;
-    if(mac.length != 17){
-        res.send(null);        
-    }else{
-        const time = date.toFormat('YYYY-MM-DD HH24:MI:SS');
+app.get('/:id', (req,res)=>{
+    console.log("연결!");
+    res.send("okay");
+    // const mac = req.query.mac;
+    // if(mac.length != 17){
+    //     res.send(null);        
+    // }else{
+    //     const time = date.toFormat('YYYY-MM-DD HH24:MI:SS');
         
-    }    
+    // }    
 });
 
 //rounting
