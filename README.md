@@ -14,3 +14,15 @@ Commit Log
         + Server
             + created index.js
             + .gitignore
+   
++ 1.0.1
+    + created MYSQL
+        + created .env        
+   
++ 1.1.0
+    + Improved Structure
+        + merged mysql.js
+    + database connection
+    + Mobile Application
+        + created Test Mobile application
+        + created package
