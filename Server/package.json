@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "date-utils": "^1.2.21",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",

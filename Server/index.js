@@ -4,7 +4,11 @@ require('date-utils');
 var express = require('express');
 var date = new Date();
 const app = express();
+const bodyParser = require('body-parser');
 const port = 3000;
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 //Mysql
 var mysql = require('mysql');
@@ -29,6 +33,12 @@ app.get('/gps_r', (req,res)=>{
     }    
 });
 
+//rounting
+
+app.post('/gps/:id', (req,res)=>{
+    console.log(req.params.id);
+    console.log(req.body);
+})
 
 app.get('/gps_d', (req,res)=>{      
     const mac = req.query.mac;
