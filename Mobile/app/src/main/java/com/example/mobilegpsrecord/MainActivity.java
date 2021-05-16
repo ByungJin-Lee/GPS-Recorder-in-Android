@@ -45,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             showDialogForLocationServiceSetting();
         }
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.INTERNET"},0);
         this.setting();
+
+        Manager manager = new Manager();
+        manager.start();
+
         //Foreground
         Intent serviceIntent = new Intent(MainActivity.this, GPSService.class);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -69,16 +74,12 @@ public class MainActivity extends AppCompatActivity {
         set.setOnClickListener(new SetDestinationListener());
         //Destination
         EditText destination = (EditText)findViewById(R.id.txt_destination);
-        Manager.setTxtEl(destination);
         destination.setText(Manager.getDestinationURL());
-        //Current
-        Button current = (Button)findViewById(R.id.btn_current);
-        current.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(context, "현 위치 위도:"+ gps.getLatitude() + " 경도: " + gps.getLongitude(),Toast.LENGTH_LONG).show();
-            }
-        });
+        Manager.setTxtEl(destination);
+        //Interval
+        EditText interval = (EditText)findViewById(R.id.txt_delay);
+        interval.setText(""+(Manager.interval/1000));
+        Manager.setIntervalEl(interval);
     }
 
 

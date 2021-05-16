@@ -3,6 +3,7 @@ package me.byungjin.gps.listeners;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 
 import me.byungjin.gps.Manager;
@@ -13,9 +14,11 @@ public class RunListener implements View.OnClickListener {
     public void onClick(View v) {
         Manager.running = !Manager.running;
         if(Manager.running){
+            Manager.setDelay();
             v.setBackgroundColor(Color.GREEN);
             //Foreground
             if(Manager.context != null){
+                Log.v("Err","실행");
                 Intent serviceIntent = new Intent(Manager.context, GPSService.class);
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                     Manager.context.startForegroundService(serviceIntent);

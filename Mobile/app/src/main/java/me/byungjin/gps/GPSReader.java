@@ -1,14 +1,17 @@
 package me.byungjin.gps;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,30 +24,9 @@ import androidx.core.content.ContextCompat;
 import static android.content.Context.LOCATION_SERVICE;
 
 
-public class GPSReader extends Thread implements LocationListener {
-    private LocationManager locationManager;
-    private Location currentLocation;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void run(){
-        while(Manager.running){
-            try{
-                Log.e("기록", "GPS");
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if((currentLocation = getLocation())!=null)
-                            Manager.sendGPSJSON(currentLocation.getLatitude(), currentLocation.getLongitude());
-                    }
-                },0);
-                sleep(Manager.interval);
-            }catch(Exception e){
-                Log.e("Exception", e.getMessage());
-                Manager.running = false;
-            }
-        }
-    }
+public class GPSReader implements LocationListener {
+    private LocationManager locationManager;
 
     public Location getLocation() {
         try{
@@ -57,8 +39,9 @@ public class GPSReader extends Thread implements LocationListener {
             }
             //After checking
             locationManager = (LocationManager) Manager.context.getSystemService(LOCATION_SERVICE);
-            if(locationManager == null) return null;
-
+            if(locationManager == null) {
+                return null;
+            }
             if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, Manager.interval, 0f, this);
                 if(locationManager != null){
@@ -72,7 +55,7 @@ public class GPSReader extends Thread implements LocationListener {
             }
             return null;
         }catch (Exception e){
-            Log.e("Error", "Can't not find Location...");
+            Log.e("Error", "Can't not find Location..." + e.getMessage());
             return null;
         }
     }

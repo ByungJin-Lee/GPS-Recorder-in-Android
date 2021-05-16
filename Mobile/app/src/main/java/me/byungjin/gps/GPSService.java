@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -27,7 +28,6 @@ public class GPSService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Intent service = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, service, PendingIntent.FLAG_CANCEL_CURRENT);
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel("channel", "play!", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -41,8 +41,8 @@ public class GPSService extends Service {
             startForeground(1, notification.build());
         }
 
-        GPSReader gps = new GPSReader();
-        gps.start();
+        GPSSender gps = new GPSSender();
+        gps.execute();
 
         return START_STICKY;
     }
