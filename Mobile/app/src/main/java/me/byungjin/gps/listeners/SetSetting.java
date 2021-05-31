@@ -4,9 +4,10 @@ import android.view.View;
 
 import me.byungjin.gps.Manager;
 
-public class SetDestinationListener implements View.OnClickListener {
+public class SetSetting implements View.OnClickListener {
     @Override
     public void onClick(View v) {
+        Manager.setDelay();
         Manager.setURL();
     }
 }

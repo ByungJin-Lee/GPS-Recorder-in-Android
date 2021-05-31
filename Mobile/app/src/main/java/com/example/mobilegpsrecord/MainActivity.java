@@ -21,13 +21,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import me.byungjin.gps.GPSReader;
 import me.byungjin.gps.Manager;
 import me.byungjin.gps.GPSService;
 import me.byungjin.gps.listeners.RunListener;
-import me.byungjin.gps.listeners.SetDestinationListener;
+import me.byungjin.gps.listeners.SetSetting;
 
 public class MainActivity extends AppCompatActivity {
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         run.setOnClickListener(new RunListener());
         //Set
         Button set = (Button)findViewById(R.id.btn_destination);
-        set.setOnClickListener(new SetDestinationListener());
+        set.setOnClickListener(new SetSetting());
         //Destination
         EditText destination = (EditText)findViewById(R.id.txt_destination);
         destination.setText(Manager.getDestinationURL());
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         EditText interval = (EditText)findViewById(R.id.txt_delay);
         interval.setText(""+(Manager.interval/1000));
         Manager.setIntervalEl(interval);
+        //Identification
+        TextView txt = (TextView)findViewById(R.id.txt_androidID);
+        txt.setText(Manager.identification);
     }
 
 
@@ -99,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
             if (!check_result) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
-                    Toast.makeText(Manager.context, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Manager.context, "퍼미션이 거부되었습니다.", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(Manager.context, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Manager.context, "퍼미션이 거부되었습니다. ", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -120,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private void showDialogForLocationServiceSetting() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Manager.context);
         builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
-                + "위치 설정을 수정하실래요?");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override

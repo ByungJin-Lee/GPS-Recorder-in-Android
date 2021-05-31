@@ -8,6 +8,15 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/txt_androidID"
+        android:textStyle="bold"
+        android:textIsSelectable="true"
+        android:textSize="30sp"
+        android:layout_marginBottom="20sp"></TextView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -50,7 +59,7 @@
         android:id="@+id/btn_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set Destination"/>
+        android:text="Set Setting"/>
 
     <Button
         android:id="@+id/btn_running"

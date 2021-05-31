@@ -18,7 +18,6 @@ public class RunListener implements View.OnClickListener {
             v.setBackgroundColor(Color.GREEN);
             //Foreground
             if(Manager.context != null){
-                Log.v("Err","실행");
                 Intent serviceIntent = new Intent(Manager.context, GPSService.class);
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                     Manager.context.startForegroundService(serviceIntent);

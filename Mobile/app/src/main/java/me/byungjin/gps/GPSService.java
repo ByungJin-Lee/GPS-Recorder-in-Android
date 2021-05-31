@@ -34,9 +34,9 @@ public class GPSService extends Service {
             notificationManager.createNotificationChannel(channel);
             NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), "channel")
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setContentTitle("Application")
+                    .setContentTitle("위치 기록 및 송신 중")
                     .setContentIntent(pendingIntent)
-                    .setContentText("");
+                    .setContentText(Manager.identification);
             notificationManager.notify(1, notification.build());
             startForeground(1, notification.build());
         }

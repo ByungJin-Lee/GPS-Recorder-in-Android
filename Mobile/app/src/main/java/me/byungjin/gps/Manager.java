@@ -34,7 +34,7 @@ public class Manager extends Thread {
     //on
     public static boolean running = false;
     //URL String
-    private static String destinationURL = "http://youngman-dev-server.kro.kr";
+    private static String destinationURL = "";
     //Elements
     private static EditText txtEl = null;
     private static EditText intervalEl = null;

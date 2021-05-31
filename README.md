@@ -1,11 +1,32 @@
 # GPS_Mobile
 ===
+Summary
+---
+This Application is for recording GPS data(Latitude, Longitude).
+
+And this Application works at Foreground.(Not Background Application...)
+
+DataBase use 'ANDROID_ID' as Key for identificate User.
+
 
 + Mobile
     + Java Application
 + Server
     +  Node.js(Rest.api)
    
+Enviroment
+---
++ You need .env setting in Server
+    + Mysql(Keys)
+        + ADDRESS
+        + DATABASE
+        + IDENTIFICATION
+        + PASSWORD
+        + PORT
+    + IDENTIFICATION
+        + NUMBER
+
+
 Commit Log
 ---
 + 1.0.0
@@ -26,3 +47,6 @@ Commit Log
     + Mobile Application
         + created Test Mobile application
         + created package
+   
++ 1.2.0
+    + Complete GPS Mobile Application            
