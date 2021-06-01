@@ -13,6 +13,17 @@ DataBase use 'ANDROID_ID' as Key for identificate User.
     + Java Application
 + Server
     +  Node.js(Rest.api)
++ DataBase
+    + Mysql
+
+Work
+---
++ Application
+![Mobile](./Images/Mobile.jpg)
++ Foreground
+![Foreground](./Images/Foreground.jpg)
++ DataBase
+![DataBaseRecored](./Images/DataBaseRecord.png)
    
 Enviroment
 ---
@@ -25,7 +36,12 @@ Enviroment
         + PORT
     + IDENTIFICATION
         + NUMBER
-
+   
++ DataBase Table(gps_record)
+    + MAC
+    + TIME
+    + Latitude
+    + Longitude
 
 Commit Log
 ---
