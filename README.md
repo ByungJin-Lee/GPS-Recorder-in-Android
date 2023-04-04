@@ -1,6 +1,6 @@
 GPS_Mobile
 ===
-Summary
+Summary 
 ---
 This Application is for recording GPS data(Latitude, Longitude).
 
